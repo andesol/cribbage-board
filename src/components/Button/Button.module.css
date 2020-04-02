@@ -1,0 +1,8 @@
+.Button {
+    margin: auto;
+    background-color: transparent;
+    width: 20%;
+    height: 20%;
+    height: auto;
+    border: 1px solid red
+}
