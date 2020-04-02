@@ -1,0 +1,11 @@
+.SharedArea {
+    display: flex;
+    justify-content: right;
+    margin: 3rem auto;
+    width: 100%;
+}
+
+.SharedArea button {
+    transform: rotate(90deg);
+    justify-self: right;
+}

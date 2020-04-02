@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import Score from './containers/Score/Score'
+import Board from './containers/Board/Board'
 
 
 function App() {
   return (
     <div className="App">
-      <Score />
+      <Board />
     </div>
   );
 }

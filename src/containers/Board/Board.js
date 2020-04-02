@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
-import IndividualScore from '../../components/IndividualScore/IndividualScore'
-import Button from '../../components/Button/Button'
+import SharedArea from '../../components/SharedArea/SharedArea';
+import IndividualPanel from '../../components/IndividualPanel/IndividualPanel';
+
+import classes from './Board.module.css';
 
 class Score extends Component {
     state = {
         'Score1': 0,
         'Score2': 0,
     }
-    plusOne(player) {
+    plusOne = (player) => {
         switch (player) {
             case 'player1':
                 if (this.state.Score1 < 121) {
@@ -21,9 +23,11 @@ class Score extends Component {
                     this.setState({ 'Score2': newScore })
                 }
                 break;
+            default:
+                break;
         }
     }
-    minusOne(player) {
+    minusOne = (player) => {
         switch (player) {
             case 'player1':
                 if (this.state.Score1 > 0) {
@@ -37,24 +41,29 @@ class Score extends Component {
                     this.setState({ 'Score2': newScore })
                 }
                 break;
+            default:
+                break;
         }
     }
-
+    resetScore = () => {
+        this.setState({ 'Score1': 0, 'Score2': 0 })
+    }
     render() {
         return (
-            <div>
-                <IndividualScore score={this.state.Score1} />
-                <Button clicked={() => this.plusOne('player1')}> + </Button>
-                <Button clicked={() => this.minusOne('player1')}> - </Button>
-
-                <IndividualScore score={this.state.Score2} />
-                <Button clicked={() => this.plusOne('player2')}> + </Button>
-                <Button clicked={() => this.minusOne('player2')}> - </Button>
-            </div>
+            <>
+                <div className={classes.rotate}>
+                    <IndividualPanel
+                        score={this.state.Score1}
+                        increaseScore={() => this.plusOne('player1')}
+                        decreaseScore={() => this.minusOne('player1')} />
+                </div>
+                <SharedArea reset={this.resetScore} />
+                <IndividualPanel
+                    score={this.state.Score2}
+                    increaseScore={() => this.plusOne('player2')}
+                    decreaseScore={() => this.minusOne('player2')} />
+            </>
         )
-
     }
 }
-
-
 export default Score
